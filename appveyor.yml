@@ -11,6 +11,6 @@ install:
   - cd %APPVEYOR_BUILD_FOLDER%
 
 build_script:
-  - cmake -G"%VS_GEN%" -Djsoncpp_DIR=C:/Libraries/jsoncpp/lib/cmake/jsoncpp .
+  - cmake -G"%VS_GEN%" -Djsoncpp_DIR=C:/Libraries/jsoncpp/lib/cmake/jsoncpp -DCMAKE_INSTALL_PREFIX=%CD:\=/%/install .
   - cmake --build . --config Release --target install
   - ctest -C Release --output-on-failure --timeout 100

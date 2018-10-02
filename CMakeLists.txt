@@ -13,6 +13,7 @@ message (STATUS "Found jsoncpp: ${jsoncpp_DIR}")
 
 add_executable (hello main.cxx)
 target_link_libraries (hello jsoncpp_lib)
+install (TARGETS hello DESTINATION bin)
 
 enable_testing()
 add_test (NAME hello COMMAND hello)
