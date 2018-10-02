@@ -1,0 +1,16 @@
+environment:
+  matrix:
+    #- VS_GEN: Visual Studio 10 2010
+    - VS_GEN: Visual Studio 14 2015
+
+install:
+  - git clone https://github.com/open-source-parsers/jsoncpp.git
+  - pushd jsoncpp
+  - cmake -G"%VS_GEN%" -DCMAKE_INSTALL_PREFIX=C:/Libraries/jsoncpp -DBUILD_SHARED_LIBS=OFF -DJSONCPP_WITH_CMAKE_PACKAGE=ON .
+  - cmake --build . --config Release --target install
+  - cd %APPVEYOR_BUILD_FOLDER%
+
+build_script:
+  - cmake -G"%VS_GEN%" -Djsoncpp_DIR=C:/Libraries/jsoncpp/lib/cmake/jsoncpp .
+  - cmake --build . --config Release --target install
+  - ctest -C Release --output-on-failure --timeout 100
