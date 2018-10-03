@@ -12,7 +12,7 @@ find_package (jsoncpp NO_MODULE REQUIRED)
 message (STATUS "Found jsoncpp: ${jsoncpp_DIR}")
 
 add_executable (hello main.cxx)
-target_link_libraries (hello jsoncpp_lib)
+target_link_libraries (hello jsoncpp_lib_static)
 install (TARGETS hello DESTINATION bin)
 
 enable_testing()
